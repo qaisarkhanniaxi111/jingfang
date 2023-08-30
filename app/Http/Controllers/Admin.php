@@ -22,33 +22,33 @@ class Admin extends Controller
     }
     public function loginsubmit(Request $r)
     {
-      $recaptcha_secret="6LeGza4mAAAAALvmgwLlmELm-tCdQtrVqhCOcGzR";
-      $responsee=$r->get("g-recaptcha-response");
-      $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$recaptcha_secret."&response=".$responsee);
-      $response=json_decode($response,true);
-      if($response["success"]===true)
-      {
-      $r->validate([
-  'username'=>'required',
-  'password'=>'required'
-]);
-$username=$r->get("username");
-$password=$r->get("password");
-$ad=new AdminModel();
-$result=$ad->login($username,$password);
-if($result>0)
-{
-  Session::put("admin","admin");
-  return redirect("/dashboard");
-}
-else {
-  return View("admin/login",array("loginfailed"=>"Credentials do not match"));
-}
-}
-else {
-  return View("admin/login",array("loginfailed"=>"Recaptcha error"));
-}
-}
+        // $recaptcha_secret="6LeGza4mAAAAALvmgwLlmELm-tCdQtrVqhCOcGzR";
+        // $responsee=$r->get("g-recaptcha-response");
+        // $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$recaptcha_secret."&response=".$responsee);
+        // $response=json_decode($response,true);
+        // if($response["success"]===true)
+        // {
+              $r->validate([
+                'username'=>'required',
+                'password'=>'required'
+              ]);
+              $username=$r->get("username");
+              $password=$r->get("password");
+              $ad=new AdminModel();
+              $result=$ad->login($username,$password);
+              if($result>0)
+              {
+                Session::put("admin","admin");
+                return redirect("/dashboard");
+              }
+              else {
+                return View("admin/login",array("loginfailed"=>"Credentials do not match"));
+              }
+        // }
+        // else {
+        //   return View("admin/login",array("loginfailed"=>"Recaptcha error"));
+        // }
+    }
 
 public function dashboard()
 {

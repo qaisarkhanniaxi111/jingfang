@@ -68,16 +68,40 @@ function displayQuestions(data,number)
   for(i=0;i<data.length;i++)
   {
     allQuestions+=data[i].id+","
+      
   txt+='<span style="color:blue">'+(i+1+number)+". "+data[i].question+"</span><br>"
+  if(data[i].maingroupname=='CCMQ') {
+      txt+='<span style="color:red">( No=1, Seldom=2, Sometimes=3, Often=4, Always=5 )</span><br>';
+  }
+  if(data[i].maingroupname=='BCQ_Negative' || data[i].maingroupname=='BCQ_Positive' || data[i].maingroupname=='BCQs') {
+      txt+='<span style="color:red">( No=0, Seldom=25, Sometimes=50, Often=75, Always=100 )</span><br>';
+  }
+
+
   txt+='<div class="row"><div class="col-lg-6">'
-  txt+='<div class="col-lg-3"><input class="form-check-input" type="radio" name=\"question_'+data[i].id+'\" id="searchByName2"  value=\"'+data[i].questionoption1+'\"><label class="form-check-label" id="searchByName"  style="font-weight:bold">&nbsp;'+data[i].questionoption1+'</label></div>'
+
+  txt+='<div class="col-lg-3"><input class="form-check-input" type="radio" name=\"question_'+data[i].id+'\" id="searchByName2"  value=\"'+data[i].questionoption1+'\"><label class="form-check-label" id="searchByName"  style="font-weight:bold">&nbsp;'+data[i].questionoption1+'</label></div>';
   if(data[i].reservevalue!="")
   {
     txt+='<div class="col-lg-3"><input class="form-check-input" type="radio" name=\"question_'+data[i].id+'\" id="searchByName2"  value=\"'+data[i].reservevalue+'\"><label class="form-check-label" id="searchByName" style="font-weight:bold">&nbsp;'+data[i].reservevalue+'</label></div>'
 
   }
   else {
-    txt+='<div class="col-lg-3"><input class="form-check-input" type="radio" name=\"question_'+data[i].id+'\" id="searchByName2"  value=\"'+data[i].questionoption2+'\"><label class="form-check-label" id="searchByName"  style="font-weight:bold">&nbsp;'+data[i].questionoption2+'</label></div>'
+    txt+='<div class="col-lg-3"><input class="form-check-input" type="radio" name=\"question_'+data[i].id+'\" id="searchByName2"  value=\"'+data[i].questionoption2+'\"><label class="form-check-label" id="searchByName"  style="font-weight:bold">&nbsp;'+data[i].questionoption2+'</label></div>';
+
+      if(data[i].questionoption3!='') {
+          txt+='<div class="col-lg-3"><input class="form-check-input" type="radio" name=\"question_'+data[i].id+'\" id="searchByName2"  value=\"'+data[i].questionoption3+'\"><label class="form-check-label" id="searchByName"  style="font-weight:bold">&nbsp;'+data[i].questionoption3+'</label></div>';
+      }
+
+      if(data[i].questionoption4!='') {
+          txt+='<div class="col-lg-3"><input class="form-check-input" type="radio" name=\"question_'+data[i].id+'\" id="searchByName2"  value=\"'+data[i].questionoption4+'\"><label class="form-check-label" id="searchByName"  style="font-weight:bold">&nbsp;'+data[i].questionoption4+'</label></div>';
+
+      }
+
+      if(data[i].questionoption5!='') {
+        txt+='<div class="col-lg-3"><input class="form-check-input" type="radio" name=\"question_'+data[i].id+'\" id="searchByName2"  value=\"'+data[i].questionoption5+'\"><label class="form-check-label" id="searchByName"  style="font-weight:bold">&nbsp;'+data[i].questionoption5+'</label></div>';
+  
+      }
   }
   txt+="</div></div><br>"
   }

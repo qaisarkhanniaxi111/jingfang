@@ -117,7 +117,13 @@ $("#"+active+"_a").css("color","white")
         @foreach($questions as $g)
         <tr id="row{{$g->id}}">
         <td class="py-5 px-6" id="description{{$g->id}}">{{$g->question}}</td>
-        <td class="py-5 px-6" id="options{{$g->id}}">{{$g->questionoption1}},{{$g->questionoption2}}</td>
+        <td class="py-5 px-6" id="options{{$g->id}}">
+          {{$g->questionoption1}},
+          {{$g->questionoption2}}
+          {{ (!is_null($g->questionoption3)) ? ','.$g->questionoption3 : "" }}
+          {{ (!is_null($g->questionoption4)) ? ','.$g->questionoption4 : "" }}
+          {{ (!is_null($g->questionoption5)) ? ','.$g->questionoption5 : "" }}
+        </td>
         <td class="py-5 px-6" id="trueAnswer{{$g->id}}">{{$g->answer}}</td>
         <td class="py-5 px-6" id="weight{{$g->id}}">{{$g->weight}}</td>
         <td class="py-5 px-6" id="priority{{$g->id}}">{{$g->priority}}</td>
@@ -368,7 +374,13 @@ $("#maingroup").change(function(){
          {
        ret+='<tr id=\"row'+questions[i].id+'\">\
        <td class="py-5 px-6" id=\"description'+questions[i].id+'\">'+questions[i].question+'</td>\
-       <td class="py-5 px-6" id=\"options'+questions[i].id+'\">'+questions[i].questionoption1+","+questions[i].questionoption2+'</td>\
+       <td class="py-5 px-6" id=\"options'+questions[i].id+'\">'+
+       questions[i].questionoption1+","+
+       questions[i].questionoption2+","+
+       questions[i].questionoption3+","+
+       questions[i].questionoption4+","+
+       questions[i].questionoption5+
+       '</td>\
        <td class="py-5 px-6" id=\"trueAnswer'+questions[i].id+'\">'+questions[i].answer+'</td>\
        <td class="py-5 px-6" id=\"weight'+questions[i].id+'\">'+questions[i].weight+'</td>\
        <td class="py-5 px-6" id=\"priority'+questions[i].id+'\">'+questions[i].priority+'</td>\

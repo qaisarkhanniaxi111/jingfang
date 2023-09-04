@@ -34,7 +34,7 @@ class AssessmentModel extends Model
 
     function getQuestions()
     {
-      $result=  DB::select(DB::raw("select * from questions where subgroupid=0"));
+      $result=  DB::select(DB::raw("select questions.*,maingroup.name as maingroupname from questions left join maingroup on questions.maingroupid = maingroup.id where questions.subgroupid=0 "));
       return $result;
     }
     function submitQuestionAnswer($customerid,$questionid,$answer)

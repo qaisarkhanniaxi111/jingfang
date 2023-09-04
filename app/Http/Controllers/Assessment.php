@@ -389,12 +389,13 @@ function addinvitebyuser(Request $r)
 
   $data=array("first"=>$firstname,"lastname"=>$lastname,"emailaddress"=>$emailaddress,"random"=>$random);
   Mail::send("admin.invitetemplate2",$data,function($messages) use ($emailaddress){
-  $messages->to($emailaddress);
-  $messages->subject("Jing Fang Assessment Invitation..!");
+    $messages->to($emailaddress);
+    $messages->subject("Jing Fang Assessment Invitation..!");
   });
 
   $ad=new AssessmentModel();
   $clientid=$ad->addClient($firstname,$lastname,$emailaddress);
+ 
   $now = new DateTime();
 $mon=$now->format('m');
 $day=$now->format('d');

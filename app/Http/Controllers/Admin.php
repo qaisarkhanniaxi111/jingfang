@@ -177,6 +177,7 @@ public function questions()
   $groups=$ad->getGroups();
   $subgroups=$ad->getSubGroups($groups[0]->id);
   $questions=$ad->getQuestions($groups[0]->id);
+  // dd($questions); 
   return View("admin.admintop").View("admin/questions",["groups"=>$groups,"subgroups"=>$subgroups,"questions"=>$questions]);
 }
 
